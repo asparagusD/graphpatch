@@ -277,6 +277,7 @@ flowchart LR
 | **51** | `chunk51_balanced_single_band_data` | **Deployed model's data**: balanced single-band / non-functioning sets | `ch51_{N}x{N}_{train,val,test}.json`, `ch51_manifest.parquet` |
 | **52** | `chunk52_balanced_replay_finetune_gatv2` | **Trains the deployed model** | `ch52_bal_ft{12,15,35,45}_s{0,1}.pt`, `ch52_runs.csv` (with SHA-256) |
 | 53 | `chunk53_balanced_gupta_cnn` | Gupta CNN vs deployed GATv2 on balanced sets | `ch53_cnn*_bal_s*.pt`, `ch53_*` |
+| 54 | `chunk54_independent_replay_finetune` | Independent per-grid fine-tunes from θ₀ (each minibatch 32 target + 32 25×25); vs zero-shot, Gupta CNN and the Chunk 52 chain | `ch54_ind_ft{12,15,35,45}_*.pt`, `ch54_*`, `ch54_table_gatv2_vs_cnn.{png,pdf}` |
 | — | `chunk_prereq_multigrid_cache` | Raw `.mat` → per-grid tensor caches (before Chunk 5) | `raw_cache_{N}x{N}.pt` |
 | — | `chunk_seed_stability` | 5-seed stability of Chunk 22/23 findings | `stability/*.pt`, `seed_stability_ch2{2,3}.csv` |
 | — | `cleanup_v1_artifacts` | Quarantine invalid v1.0 fine-tune artifacts (before Chunk 12) | `v1_cleanup_report.json` |
