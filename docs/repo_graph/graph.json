@@ -2053,6 +2053,96 @@
    "summary_sha": null
   },
   {
+   "path": "artifact:ch54_curves.csv",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_metrics.csv",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_paired.csv",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_per_sample.parquet",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_rebuild_35x35_extra.json",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_report.md",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_runs.csv",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_table_gatv2_vs_cnn.{}",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_table_values.csv",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
+   "path": "artifact:ch54_{}.pt",
+   "type": "artifact",
+   "size": null,
+   "chunk": 54,
+   "external": true,
+   "summary": "",
+   "summary_sha": null
+  },
+  {
    "path": "artifact:cnn_split_indices.json",
    "type": "artifact",
    "size": null,
@@ -2370,11 +2460,11 @@
   {
    "path": "docs/repo_graph/REPO_MAP.md",
    "type": "markdown",
-   "size": 22514,
+   "size": 22774,
    "chunk": null,
-   "sha": "db3ecdfe931cb84a3d003cb7bbdf6432d19c86f3",
-   "summary": "Human-readable repository map: Mermaid diagrams of the model lineage (deployed Chunk 52 chain best_model -> bal_ft12 -> bal_ft15 -> bal_ft35 -> bal_ft45, with Chunk 51 data and Chunk 53 CNN comparison, plus the earlier natural-distribution lineage) and src/ module dependencies; the web app section (C8.4): runtime data flow (main thread, worker, assets), webapp/src module dependencies from the graph's import edges, and the assets / parity / deployment pipeline from webapp_private through export/ to GitHub Pages, with a file-area table; a table of every notebook; and the files and exact graph-builder specification the web app depends on.",
-   "summary_sha": "db3ecdfe931cb84a3d003cb7bbdf6432d19c86f3"
+   "sha": "aaf69716388c927cde30c16a45bb68491bf1a0fa",
+   "summary": "Human-readable repository map: Mermaid diagrams of the model lineage (deployed Chunk 52 chain best_model -> bal_ft12 -> bal_ft15 -> bal_ft35 -> bal_ft45, with Chunk 51 data and Chunk 53 CNN comparison, plus the earlier natural-distribution lineage), src/ module dependencies and the planned web-app data flow; a table of every notebook through Chunk 54; the browser model assets and golden fixtures; and the files and exact graph-builder specification the web app depends on.",
+   "summary_sha": "aaf69716388c927cde30c16a45bb68491bf1a0fa"
   },
   {
    "path": "docs/repo_graph/graph.json",
@@ -4135,6 +4225,45 @@
    ],
    "summary": "Trains one flatten-readout Gupta CNN per grid (12, 15, 35, 45; seeds 0 and 1) on the Chunk 51 balanced splits and compares it antenna-by-antenna with the Chunk 52 GATv2 (bal_ft45_s0) on 500 test antennas per grid. The GATv2 wins on every grid, overall and per class: test MSE GATv2 vs CNN 1.936 vs 2.287 (12x12), 1.692 vs 2.784 (15x15), 0.988 vs 1.689 (35x35), 1.087 vs 1.677 (45x45).",
    "summary_sha": "4efc62a2bc3455ec59e09836949082f0bbbf5719"
+  },
+  {
+   "path": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "type": "notebook",
+   "size": 506334,
+   "chunk": 54,
+   "sha": "189b8907758386995d318abb8a71ae0f774cf6a8",
+   "cells": 28,
+   "code_cells": 14,
+   "src_imports": [
+    "src/feed_component.py",
+    "src/model.py"
+   ],
+   "reads": [
+    "ch45_manifest_35x35_extra.csv",
+    "ch45_preprocess_report.json",
+    "ch51_manifest.parquet",
+    "ch51_{}x{}_{}.json",
+    "indices.json",
+    "s11_mean.npy",
+    "s11_std.npy",
+    "sample_{}.pt",
+    "seed_mask_35.npy"
+   ],
+   "writes": [
+    "ch54_curves.csv",
+    "ch54_metrics.csv",
+    "ch54_paired.csv",
+    "ch54_per_sample.parquet",
+    "ch54_rebuild_35x35_extra.json",
+    "ch54_report.md",
+    "ch54_runs.csv",
+    "ch54_table_gatv2_vs_cnn.{}",
+    "ch54_table_values.csv",
+    "ch54_{}.pt",
+    "sample_{}.pt"
+   ],
+   "summary": "Fine-tunes four independent GATv2 models from the same widened best_model.pt (θ₀), one per target grid (12/15/35/45), with every minibatch half target and half replayed 25×25 data, as the letter describes; restores processed_35x35_extra.zip if missing. On each target test set every run beats zero-shot θ₀ and the Gupta CNN (MSE 1.933/1.653/0.985/1.076 vs CNN 2.287/2.784/1.689/1.677) and is not significantly different from the Chunk 52 chain; 25×25 cost +0.04 to +0.12 dB² MSE.",
+   "summary_sha": "189b8907758386995d318abb8a71ae0f774cf6a8"
   },
   {
    "path": "notebooks/chunk_prereq_multigrid_cache.ipynb",
@@ -8092,6 +8221,121 @@
    "source": "notebooks/chunk53_balanced_gupta_cnn.ipynb",
    "target": "artifact:sample_{}.pt",
    "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk53_balanced_gupta_cnn.ipynb",
+   "target": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "kind": "precedes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch45_manifest_35x35_extra.csv",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch45_preprocess_report.json",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch51_manifest.parquet",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch51_{}x{}_{}.json",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_curves.csv",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_metrics.csv",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_paired.csv",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_per_sample.parquet",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_rebuild_35x35_extra.json",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_report.md",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_runs.csv",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_table_gatv2_vs_cnn.{}",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_table_values.csv",
+   "kind": "writes"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:ch54_{}.pt",
+   "kind": "produces"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:indices.json",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:s11_mean.npy",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:s11_std.npy",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:sample_{}.pt",
+   "kind": "produces"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:sample_{}.pt",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "artifact:seed_mask_35.npy",
+   "kind": "reads"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "src/feed_component.py",
+   "kind": "imports"
+  },
+  {
+   "source": "notebooks/chunk54_independent_replay_finetune.ipynb",
+   "target": "src/model.py",
+   "kind": "imports"
   },
   {
    "source": "notebooks/chunk_seed_stability.ipynb",
